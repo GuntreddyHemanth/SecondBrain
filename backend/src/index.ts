@@ -32,7 +32,8 @@ app.use(
   );
   
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
+const HOST = "0.0.0.0";
 
 app.post("/api/v1/signup", async (req:Request, res:Response): Promise<any> => {
     try {
@@ -186,7 +187,7 @@ app.get("/api/v1/brain/:shareLink", async (req, res) => {
 
 })
 
-app.listen(PORT, async () => {
+app.listen(PORT, HOST, async () => {
     await mongoose.connect(process.env.MONGDB_URL as string) 
     console.log("successfully connected mongdb", process.env.MONGDB_URL)
 })
