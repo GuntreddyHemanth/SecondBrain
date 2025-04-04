@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
     variant: "primary" | "secondary";
-    size: "sm" | "md"| "lg";
+    size?: "sm" | "md"| "lg";
     text: string;
     startIcon?:ReactElement;
     endIcon?:ReactElement;
@@ -27,7 +27,7 @@ const sizeStyle = {
 const defaultStyles = "rounded-md flex items-center font-light"
 
 export const Button = (props: ButtonProps) => {
-    return <button onClick={props.onClick}  className={`${variantStyle[props.variant]} ${sizeStyle[props.size]} ${defaultStyles} ${props.fullWidth ? " w-full flex justify-center items-center": ""} ${props.loading ? "opacity-45" : ""}`} >
+    return <button onClick={props.onClick}  className={`${variantStyle[props.variant]} ${sizeStyle[props.size || "md"]} ${defaultStyles} ${props.fullWidth ? " w-full flex justify-center items-center": ""} ${props.loading ? "opacity-45" : ""}`} >
            {props.startIcon ? <div className="pr-2">
         {props.startIcon}</div>: null} {props.text} {props.endIcon}</button>
 }
