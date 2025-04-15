@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { DeleteIcon } from "../../icons/DeleteIcon";
 import { ShareIcon } from "../../icons/ShareIcon";
 
@@ -6,10 +7,16 @@ interface CardProps {
     link: string,
     type: "Twitter" | "Youtube",
     contentId?: string,
-    onDelete: () => void
+    onDelete?: () => void
 }
 
 export function Card({title, link, type, onDelete}: CardProps){
+
+    useEffect(() => {
+        if (type === "Twitter" && (window as any).twttr?.widgets){
+            (window as any).twttr.widgets.load();
+        }
+    }, [type, link])
 
     return <div>
         <div className="p-4 bg-white rounded-md border-gray-200 max-w-72 border min-w-48 min-h-48">

@@ -12,19 +12,31 @@ import { deleteContent } from '../hooks/deleteContent'
 
 function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false)
-  const {contents, refresh} = useContent()
+  const {contents, refresh} = useContent() as { contents: Content[], refresh: () => void };
+  const [filterType, setFilterType] = useState<"Twitter" | "Youtube" | "All">("All")
 
   interface ShareResponse {
     response: any
     hash: string
-}
+  }
 
+  interface Content {
+    title: string;
+    link: string;
+    type: "Twitter" | "Youtube";
+    _id: string;
+  }
+  
   useEffect(() => {
     refresh()
   }, [modalOpen])
 
+  const filterContent = filterType === "All" ? 
+     contents 
+     : contents.filter(content => content.type === filterType)
+
   return <div>
-    <Sidebar/>
+    <Sidebar onfilterChange={setFilterType}/>
    <div className='p-4 ml-72 min-h-screen bg-gray-100 border-2'>
     <CreateContentModel open={modalOpen} onClose={() => {
       setModalOpen(false)
@@ -47,7 +59,7 @@ function Dashboard() {
     </div>
     <div className='flex pt-9 gap-4 flex-wrap'>
       {/* {JSON.stringify(contents)} */}
-      {contents.map(({title, link, type, _id}) =><Card 
+      {filterContent.map(({title, link, type, _id}) =><Card 
           key = {_id}
           type={type} 
           link={link}

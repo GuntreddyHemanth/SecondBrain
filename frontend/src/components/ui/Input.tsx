@@ -1,12 +1,14 @@
 
 interface InputTypes{
     placeholder: string,
-    ref?: any
+    type?: string;
+    className?: string;
+    ref?: React.Ref<HTMLInputElement>;
 }
 
-export function Input({placeholder, ref}: InputTypes){
+export function Input({placeholder, ref, className, type}: InputTypes){
     return <div>
-        <input ref={ref} placeholder={placeholder} type={"text"} className="px-4 py-2 border rounded m-2" 
+        <input ref={ref} placeholder={placeholder} type={type} className={className}
        ></input>
     </div>
 }

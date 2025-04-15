@@ -11,6 +11,7 @@ interface ButtonProps {
     fullWidth?: boolean
     disabled?: boolean
     loading?: boolean
+    className?: string
 }
 
 const variantStyle = {
