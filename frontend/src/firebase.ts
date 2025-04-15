@@ -1,9 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 const firebaseConfig = {
   apiKey: import.meta.env.FIREBASE_API_KEY,
   authDomain:import.meta.env.FIREBASE_AUTH_DOMAIN,
