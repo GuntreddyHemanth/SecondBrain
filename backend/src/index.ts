@@ -32,8 +32,10 @@ app.use(
       methods: "GET, POST, PUT, DELETE, OPTIONS",
       allowedHeaders: "Content-Type, Authorization",
     })
-  );
+);
   
+app.options('*', cors());
+
 
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = "0.0.0.0";
