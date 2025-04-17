@@ -10,6 +10,7 @@ interface GoogleLoginButtonProps {
 
 const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ className = "" }) => {
   const navigate = useNavigate();
+  console.log("hi")
 
   const handleLogin = () => {
     signInWithRedirect(auth, googleProvider);
