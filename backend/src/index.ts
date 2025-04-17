@@ -26,7 +26,7 @@ app.use(
     cors({
       origin:[
         "http://localhost:5173",
-        "https://secondbrain-delta.vercel.app/"
+        "https://secondbrain-delta.vercel.app"
       ], // Adjust this based on your frontend URL
       credentials: true, // If using authentication tokens
       methods: "GET, POST, PUT, DELETE, OPTIONS",
