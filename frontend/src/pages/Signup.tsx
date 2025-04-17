@@ -35,12 +35,7 @@ export function Signup() {
             await axios.post(`${BACKEND_URL}/api/v1/signup`, {
                 username,
                 password
-            }, {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-              });
+            });
             navigate("/dashboard");
         } catch (error) {
             setError("Signup failed. Please try again.");
