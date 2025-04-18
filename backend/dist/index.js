@@ -23,15 +23,7 @@ const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({
-    origin: [
-        "http://localhost:5173",
-        "https://second-brain-rho-two.vercel.app"
-    ], // Adjust this based on your frontend URL
-    credentials: true, // If using authentication tokens
-    methods: "GET, POST, PUT, DELETE, OPTIONS",
-    allowedHeaders: "Content-Type, Authorization",
-}));
+app.use((0, cors_1.default)({ origin: '*' }));
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = "0.0.0.0";
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
