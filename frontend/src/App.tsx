@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
        <Routes>
           <Route path="/" element={<Navigate to="/signup" />} />
-          <Route path="/signup" element={<AuthRedirect><Signup/></AuthRedirect>}/>
+          <Route path="/signup" element={<Signup/>}/>
           <Route path="/signin" element={<AuthRedirect><Signin/></AuthRedirect>}/>
           <Route path="/dashboard" element={<PravitRoute><Dashboard/></PravitRoute>}/>
           <Route path="/share/:hash" element={<SharedView/>}/>
