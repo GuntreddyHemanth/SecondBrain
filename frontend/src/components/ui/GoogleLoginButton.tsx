@@ -1,8 +1,9 @@
-import { signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { getRedirectResult } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { GoogleIcon } from "../../icons/GoogleIcon";
+import { signInWithPopup } from "firebase/auth";
 
 interface GoogleLoginButtonProps {
   className?: string;
@@ -13,7 +14,16 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ className = "" })
   console.log("hi")
 
   const handleLogin = () => {
-    signInWithRedirect(auth, googleProvider);
+    // signInWithRedirect(auth, googleProvider);
+    signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      console.log("Popup Login Success:", result.user.email);
+      navigate("/dashboard");
+    })
+    .catch((error) => {
+      console.error("Popup Login Error:", error.message);
+    });
+
   };
 
   useEffect(() => {
