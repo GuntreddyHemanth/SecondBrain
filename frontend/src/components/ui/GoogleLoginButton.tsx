@@ -1,7 +1,7 @@
-import { getRedirectResult } from "firebase/auth";
+// import { getRedirectResult } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { GoogleIcon } from "../../icons/GoogleIcon";
 import { signInWithPopup } from "firebase/auth";
 
@@ -11,7 +11,6 @@ interface GoogleLoginButtonProps {
 
 const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ className = "" }) => {
   const navigate = useNavigate();
-  console.log("hi")
 
   const handleLogin = () => {
     // signInWithRedirect(auth, googleProvider);
@@ -26,19 +25,19 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ className = "" })
 
   };
 
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result?.user) {
-          console.log("Google Redirect Login Success:", result.user.displayName, result.user.email);
-          navigate("/dashboard");
-        }
-      })
-      .catch((error) => {
-        console.error("Google Redirect Sign-In Error:", error.message);
-        navigate("/signup");
-      });
-  }, []);
+  // useEffect(() => {
+  //   getRedirectResult(auth)
+  //     .then((result) => {
+  //       if (result?.user) {
+  //         console.log("Google Redirect Login Success:", result.user.displayName, result.user.email);
+  //         navigate("/dashboard");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error("Google Redirect Sign-In Error:", error.message);
+  //       navigate("/signup");
+  //     });
+  // }, []);
 
   return (
     <button
