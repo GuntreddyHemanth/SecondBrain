@@ -26,6 +26,38 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)({ origin: '*' }));
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = "0.0.0.0";
+app.post("/api/v1/google-signin", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email, displayName } = req.body;
+        if (!email) {
+            return res.status(400).json({ message: "Email is required" });
+        }
+        // Check if user exists with this email as username
+        let user = yield db_1.UserModel.findOne({ username: email });
+        // If user doesn't exist, create a new one with a random password
+        if (!user) {
+            // Generate a secure random password
+            const securePassword = Math.random().toString(36).slice(-10) + Math.random().toString(36).slice(-10);
+            user = yield db_1.UserModel.create({
+                username: email,
+                password: securePassword
+            });
+        }
+        // Generate your app's JWT token
+        const token = jsonwebtoken_1.default.sign({
+            id: user._id
+        }, `${process.env.JWT_PASSWORD}`);
+        // Return the token
+        res.json({ token });
+    }
+    catch (error) {
+        console.error("Google auth error:", error);
+        res.status(401).json({
+            message: "Authentication failed",
+            error: error.message
+        });
+    }
+}));
 app.post("/api/v1/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const username = req.body.username;
