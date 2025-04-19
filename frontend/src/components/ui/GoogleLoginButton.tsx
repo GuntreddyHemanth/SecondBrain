@@ -16,7 +16,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ className = "" })
     // signInWithRedirect(auth, googleProvider);
     signInWithPopup(auth, googleProvider)
     .then((result) => {
-      console.log("Popup Login Success:", result.user.email);
+      console.log("Popup Login Success:", result.user?.email);
       navigate("/dashboard");
     })
     .catch((error) => {
