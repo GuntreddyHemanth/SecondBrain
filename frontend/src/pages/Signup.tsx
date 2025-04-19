@@ -5,9 +5,6 @@ import { BACKEND_URL } from "../config";
 import axios from "axios";
 import GoogleLoginButton from "../components/ui/GoogleLoginButton";
 import { Link, useNavigate } from "react-router-dom";
-// import { getRedirectResult } from "firebase/auth";
-// import { useEffect } from "react";
-// import { auth } from "../firebase";
 
 export function Signup() {
     const [loader, setLoader] = useState(false);
@@ -21,21 +18,6 @@ export function Signup() {
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
         const confirmPassword = confirmPasswordRef.current?.value;
-
-        // useEffect(() => {
-        //     // Clear any redirect login attempt that Firebase might be trying to resolve
-        //     getRedirectResult(auth)
-        //         .then((result) => {
-        //             if (result?.user) {
-        //                 // If for some reason the user was logged in successfully via redirect
-        //                 navigate("/dashboard");
-        //             }
-        //         })
-        //         .catch((err) => {
-        //             console.error("Ignored Firebase redirect error:", err.message);
-        //             // Don't navigate to /signup again — just suppress the error
-        //         });
-        // }, []);
         
 
         if (!username || !password) {
