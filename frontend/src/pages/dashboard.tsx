@@ -50,7 +50,7 @@ function Dashboard() {
             "Authorization":localStorage.getItem("token")
           }
         })
-        const shareURL = `http://localhost:5173/share/${response.data.hash}`
+        const shareURL = `https://second-brain-rho-two.vercel.app/share/${response.data.hash}`
         alert(shareURL)
       }}/>
       <Button startIcon={<PlusIcon/>} variant='primary' text='Add Content' size='md' onClick={()=>{
